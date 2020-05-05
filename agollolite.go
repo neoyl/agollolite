@@ -1,17 +1,16 @@
 package agollolite
 
-import "github.com/shima-park/agollo"
+import (
+	"github.com/shima-park/agollo"
+)
 
 type Client interface {
 	GetString(namespace, key string) string
+	GetUint16(namespace string, key string) (uint16, error)
 }
 
 type client struct {
 	agolloClient agollo.Agollo
-}
-
-func (c client) GetString(namespace, key string) string {
-	return c.agolloClient.Get(key, agollo.WithNamespace(namespace))
 }
 
 func New(metaServerUrl, appId, cluster string) (Client, error) {
