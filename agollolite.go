@@ -2,6 +2,8 @@ package agollolite
 
 import (
 	"github.com/shima-park/agollo"
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
 )
 
 type Client interface {
@@ -19,4 +21,17 @@ func New(metaServerUrl, appId, cluster string) (Client, error) {
 		return nil, err
 	}
 	return client{agolloClient: agolloClient}, nil
+}
+
+func NewWithConfigFile(configFile string) (Client, error) {
+	f, err := ioutil.ReadFile(configFile)
+	if nil != err {
+		return nil, err
+	}
+	config := config{}
+	err = yaml.Unmarshal(f, &config)
+	if nil != err {
+		return nil, err
+	}
+	return New(config.MetaServerUrl, config.AppId, config.Cluster)
 }
