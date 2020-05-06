@@ -1,14 +1,16 @@
 package agollolite
 
 import (
-	"github.com/shima-park/agollo"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
+
+	"github.com/shima-park/agollo"
+	"gopkg.in/yaml.v3"
 )
 
 type Client interface {
 	GetString(namespace, key string) string
 	GetUint16(namespace string, key string) (uint16, error)
+	GetInt(namespace string, key string) (int, error)
 }
 
 type client struct {

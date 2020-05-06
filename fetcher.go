@@ -1,8 +1,9 @@
 package agollolite
 
 import (
-	"github.com/shima-park/agollo"
 	"strconv"
+
+	"github.com/shima-park/agollo"
 )
 
 func (c client) GetString(namespace, key string) string {
@@ -16,5 +17,15 @@ func (c client) GetUint16(namespace string, key string) (uint16, error) {
 		return 0, err
 	} else {
 		return uint16(value), nil
+	}
+}
+
+func (c client) GetInt(namespace string, key string) (int, error) {
+	strValue := c.GetString(namespace, key)
+	value, err := strconv.Atoi(strValue)
+	if nil != err {
+		return 0, err
+	} else {
+		return value, nil
 	}
 }
