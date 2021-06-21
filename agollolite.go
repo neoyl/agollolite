@@ -9,6 +9,7 @@ import (
 type Client interface {
 	GetString(namespace, key string) string
 	GetUint16(namespace string, key string) (uint16, error)
+	GetUint64(namespace string, key string) (uint64, error)
 }
 
 type client struct {
