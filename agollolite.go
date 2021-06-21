@@ -11,6 +11,7 @@ type Client interface {
 	GetString(namespace, key string) string
 	GetUint8(namespace string, key string) (uint8, error)
 	GetUint16(namespace string, key string) (uint16, error)
+	GetUint64(namespace string, key string) (uint64, error)
 	GetInt(namespace string, key string) (int, error)
 }
 
